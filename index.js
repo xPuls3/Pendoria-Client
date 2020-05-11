@@ -5,6 +5,8 @@ const fs = require('fs');
 let mainWindow;
 Menu.setApplicationMenu(null);
 
+let eliteScript = fs.readFileSync('elite.js', 'utf8');
+
 function createWindow () {
 
     mainWindow = new BrowserWindow({
@@ -21,8 +23,6 @@ function createWindow () {
     mainWindow.setTitle("Pendoria");
 
     mainWindow.loadURL('https://pendoria.net').then(function () {
-
-        let eliteScript = fs.readFileSync('elite.js', 'utf8');
 
         mainWindow.webContents.executeJavaScript("(function(){" + eliteScript + "})()").then(function () {
             mainWindow.show();
